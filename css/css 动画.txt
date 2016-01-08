@@ -1,0 +1,64 @@
+transform:rotate(ndeg);		旋转：通过指定的角度参数是元素相对于原点旋转//适配-ms-/-webkit- 
+				正：顺时针旋转；负：逆时针。
+transform:skew(xdeg,ydeg);	扭曲：让元素围绕X轴或者Y轴倾斜显示//适配-ms-/-webkit- 
+
+transform:scale(mx,ny);		缩放:让元素依据中心原点进行缩放//适配-ms-/-webkit- 
+
+transform:translate(xpx,ypx);	位移：将元素向指定方向移动//适配-ms-/-webkit- 
+	
+transform:matrix(a,b,c,d,e,f);	综合变换：a/d 为缩放；e/f 为位移不包括单位px；b/c 为扭曲
+
+transform-origin:left/right/top/bottom/center;		移动原点		
+
+transition-property:all;		指定过渡或动态模拟的CSS属性
+transition-duration:.2s			指定完成过渡所需的时间
+transition-timing-function:ease-in;	指定过渡函数
+transition-delay:.2s			指定开始出现的延迟时间
+过度函数：
+ease 		逐渐变慢
+linear		恒速
+ease-in		慢->快
+ease-out 	快->慢
+ease-in-out	慢->快->慢
+
+
+css创建动画
+（1）
+animation 不需要事件触发
+
+
+（2）
+transition 需要事件触发
+
+
+2D转换
+matrix(n,n,n,n,n,n)	定义 2D 转换，使用六个值的矩阵。
+translate(x,y)	定义 2D 转换，沿着 X 和 Y 轴移动元素。
+translateX(n)	定义 2D 转换，沿着 X 轴移动元素。
+translateY(n)	定义 2D 转换，沿着 Y 轴移动元素。
+scale(x,y)	定义 2D 缩放转换，改变元素的宽度和高度。
+scaleX(n)	定义 2D 缩放转换，改变元素的宽度。
+scaleY(n)	定义 2D 缩放转换，改变元素的高度。
+rotate(angle)	定义 2D 旋转，在参数中规定角度。
+skew(x-angle,y-angle)	定义 2D 倾斜转换，沿着 X 和 Y 轴。
+skewX(angle)	定义 2D 倾斜转换，沿着 X 轴。
+skewY(angle)	定义 2D 倾斜转换，沿着 Y 轴。
+
+
+3D转换
+matrix3d(n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n)	定义 3D 转换，使用 16 个值的 4x4 矩阵。
+translate3d(x,y,z)	定义 3D 转化。
+translateX(x)	定义 3D 转化，仅使用用于 X 轴的值。
+translateY(y)	定义 3D 转化，仅使用用于 Y 轴的值。
+translateZ(z)	定义 3D 转化，仅使用用于 Z 轴的值。
+scale3d(x,y,z)	定义 3D 缩放转换。
+scaleX(x)	定义 3D 缩放转换，通过给定一个 X 轴的值。
+scaleY(y)	定义 3D 缩放转换，通过给定一个 Y 轴的值。
+scaleZ(z)	定义 3D 缩放转换，通过给定一个 Z 轴的值。
+rotate3d(x,y,z,angle)	定义 3D 旋转。
+rotateX(angle)	定义沿 X 轴的 3D 旋转。
+rotateY(angle)	定义沿 Y 轴的 3D 旋转。
+rotateZ(angle)	定义沿 Z 轴的 3D 旋转。
+perspective(n)	定义 3D 转换元素的透视视图。
+
+

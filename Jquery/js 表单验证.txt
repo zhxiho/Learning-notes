@@ -1,0 +1,49 @@
+function Focus(el) {
+    if (el.defaultValue == el.value) { el.value = ''; el.style.color = '#333'; }
+}
+
+function Blur(el) {
+    if (el.value == ''){ el.value = el.defaultValue; el.style.color = '#999'; }
+    if ( el.name == 'regphonenumber' ){
+    	regphone_check(el.value);
+    }else if( el.name == 'regchecknumber' ){
+    	regcheck_check(el.value);
+    }else if( el.name == 'regpasswordnumber' ){
+    	regpassword_check(el.value);
+    }else if( el.name == 'regrepasswordnumber' ){
+    	regrepassword_check(el.value);
+    }else if ( el.name == 'logphonenumber' ){
+    	logphone_check(el.value);
+    }else if( el.name == 'logpassword' ){
+    	logpassword_check(el.value);
+    }else if( el.name == 'logauthcode' ){
+    	logauthcode_check(el.value);
+    }
+}
+
+//登录手机号码检测
+function logphone_check(logphonenumber){
+	var logerror1 = document.getElementById('logerror1');
+	var logerrortext1 = document.getElementById('log-error-text1');
+	var logerror11 = document.getElementById('logerror11');
+	
+	if( logphonenumber == '' ){
+		logerrortext1.innerHTML = '请输入手机号码  !';
+		logerror1.style.display = 'block';
+		logerror11.style.display = 'none';
+	}
+	else{
+		var regu = /^(13[0-9]|15[0-3]|15[5-9]|18[0-9])\d{8}$/;
+	    var re = new RegExp(regu);
+	    if ( re.test(logphonenumber) ){
+	    	logerror1.style.display = 'none';
+	    	logerror11.style.display = 'block';
+	    }
+	    else{
+	    	logerrortext1.innerHTML = '请输入有效的手机号码  !';
+			logerror1.style.display = 'block';
+			logerror11.style.display = 'none';
+	    }
+	}
+	//此手机号码尚未注册过  !
+}

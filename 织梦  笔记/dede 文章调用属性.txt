@@ -1,0 +1,87 @@
+头条：h； 推荐：c； 特荐：a； 加粗：b； 图片：p；
+orderby='sortrank' 文档排序方式
+orderby='hot' 或 orderby='click' 表示按点击数排列
+orderby='sortrank' 或 orderby='pubdate' 按出版时间排列
+orderby='near'
+orderby='lastpost' 按最后评论时间
+orderby='scores' 按得分排序
+orderby='id' 按文章ID排序
+orderby='rand' 随机获得指定条件的文档列表
+
+{dede:arclist row='' titlelen='' orderby='click' flag='' typeid='' col='' infolen='' imgwidth='' imgheight='' listtype='text/images/textall' limit='0,1'}
+	题目：<a href="[field:arcurl/]">[field:title/]</a>
+	略缩图：<a href="[field:arcurl/]"><img onMouseMove="get1(this);" src="[field:picname/]"alt="[field:fulltitle/]" /></a>
+	摘要：<a href="[field:arcurl/]">[field:description function="cn_substr(@me,150)"/]</a>
+	时间：{dede:field.pubdate function="MyDate('Y-m-d H:i',@me)"/}
+	作者: {dede:field.writer/}
+	来源于：{dede:field.source/}
+	点击数：<script src="{dede:field name='phpurl'/}/count.php?view=yes&aid={dede:field name='id'/}&mid={dede:field name='mid'/}" type='text/javascript' language="javascript"></script>
+	责任编辑：{dede:adminname/}
+	内容：[field:body/]</a>
+{/dede:arclist}
+
+滚动：s；
+<marquee onMouseOver=”this.stop()" onMouseOut="this.start()" align=center direction=right scrollamount=1.5 scrolldelay=3 valign=middle behavior="alternate"> 
+{dede:arclist row=5 titlelen=20 orderby=pubdate type='image.' imgwidth='100' imgheight='80' typeid='5' }
+	[field:imglink/]
+{/dede:arclist}
+</marquee>
+
+
+<div>
+		<div id="cole" style="width:90%; border:1px solid #9d9d9e; margin:2px 13px 0px 14px; padding:5px 12px; height:90px; overflow:hidden ">
+			<div id="cole1">
+				{dede:arclist row=8 titlelen=12 orderby=pubdate col=8 type='image' imgwidth='80' imgheight='60'}
+				<table cellspacing=3 cellpadding=0 width="98%" border=0>
+					<tbody>
+					<tr><td align=middle>[field:imglink/]</td></tr>
+					<tr><td align=middle>[field:textlink/]</td></tr>
+					</tbody>
+				</table>
+				{/dede:arclist}
+			</div>
+			<div id="cole2"></div>
+		</div>
+																	
+		<script>
+		var speed=30;
+		var cole2=document.getElementByIdx_x("cole2");
+		var cole1=document.getElementByIdx_x("cole1");
+		var cole=document.getElementByIdx_x("cole");
+		cole2.innerHTML=cole1.innerHTML; //克隆colee1为colee2
+		function Marquee8(){
+			//当滚动至colee1与colee2交界时
+			if(cole2.offsetTop - cole.scrollTop <= 0 ){
+			 	cole.scrollTop -= cole1.offsetHeight; //colee跳到最顶端
+			}else{
+			 	cole.scrollTop++;
+			}
+		}
+		var MyMar1=setInterval(Marquee8,speed);//设置定时器
+		//鼠标移上时清除定时器达到滚动停止的目的
+		cole.onmouseover=function(){clearInterval(MyMar1)};
+		//鼠标移开时重设定时器
+		cole.onmouseout=function(){MyMar1=setInterval(Marquee8,speed)};
+		</script>
+	</div>
+
+跳转：j；
+
+
+幻灯片：f； 
+{dede:arclist row=5 titlelen=60 flag='f'}
+<A class=show title=[field:title /] href="[field:arcurl /]" target=_blank><img src='[field:picname/]' width=320 height=240 
+rel="<h4>[field:description function="cn_substr(@me,300)"/]......"></A>
+{/dede:arclist} 
+
+
+
+
+
+
+
+
+
+
+
+

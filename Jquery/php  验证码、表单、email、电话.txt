@@ -1,0 +1,129 @@
+form 表单
+
+<form action="{dede:global.cfg_templets_skin/}/check.php" method="post">
+	<input class="input1" name="phonenumber" type="text" value="手机号码" style="background-image:url({dede:global.cfg_templets_skin/}/images/num1.png);background-repeat:no-repeat;" onfocus="if(this.value=='手机号码'){this.value=''}" onblur="if(this.value==''){this.value='手机号码'}">
+	<input class="input2" name="password" type="password" value="" style="background-image:url({dede:global.cfg_templets_skin/}/images/passs.png);background-repeat:no-repeat;">
+	<input class="input3" name="authcode" type="text" value="请输入4位验证码" style="background-image:url({dede:global.cfg_templets_skin/}/images/chec.png);background-repeat:no-repeat;" onfocus="if(this.value=='请输入4位验证码'){this.value=''}" onblur="if(this.value==''){this.value='请输入4位验证码'}">
+	<div class="input5"><img id="cap_img" alt="" src="{dede:global.cfg_templets_skin/}/index.php?r=1"></div>
+	<!-- <div class="input6">看不清<br><a href="http://localhost/dedecms/plus/list.php?tid=11">换一张</a></div> -->
+	<div class="input6">看不清<br><a href="javascript:void(0);" onclick="document.getElementById('cap_img').src='{dede:global.cfg_templets_skin/}/index.php' ">换一张</a></div>
+	<input class="input4" type="submit" value="登录">
+</form>
+
+、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、
+
+index.php 验证码生成
+
+<?php
+    session_start();
+    //创建一个资源图像
+    $image = imagecreatetruecolor(120,30);
+    //为图像分配颜色
+    $bgcolor = imagecolorallocate($image, 224, 255, 255);
+    //将色素平铺在资源图像上
+    imagefill($image, 0, 0, $bgcolor);
+    //创建随机显示数字
+//     for( $i=0 ; $i <4 ; $i++ ){
+//         //字体大小
+//         $fontsize = 6;
+//         //字体颜色
+//         $fontcolor = imagecolorallocate($image,rand(0,120),rand(0,120),rand(0,120));
+//         //随机数字
+//         $fontcontent = rand(0, 9);
+        
+//         //随机显示位置 
+//         $x = ($i*100/4)+rand(5,10);
+//         $y = rand(5,10);
+//         //显示随机数字
+//         imagestring($image, $fontsize, $x, $y, $fontcontent, $fontcolor);
+//     }
+    //记录随机生成的字符，用做验证
+    $captch_code ='';
+    //创建随机数字 + 字母
+    for( $i=0; $i<4;$i++ ){
+        $fontsize = 30;
+        $fontcolor = imagecolorallocate($image,rand(0,120),rand(0,120),rand(0,120));
+        $data = 'abcdefghigklmnopqrstuvwxwyABCDEFGHIGKLMNOPQRSTUVWXWY0123456789';
+        $fontcontent = substr($data,rand(0,strlen($data)),1);
+        $captch_code .= $fontcontent; 
+        $x = ($i*120/4)+rand(5,10);
+        $y = rand(5,10);
+        imagestring($image, $fontsize, $x, $y, $fontcontent, $fontcolor);
+    }
+    //将记录的字符保存在服务器端的sesssion中；
+    $_SESSION['authcode'] = $captch_code;
+    //创建干扰点背景
+    for( $i=0; $i<200 ;$i++ ){
+        //设置干扰点颜色
+        $pointcolor = imagecolorallocate($image, rand(50,200), rand(50,200), rand(50,200));
+        //显示干扰点
+        imagesetpixel($image, rand(1,119), rand(1,29), $pointcolor);
+    }
+    //创建干扰线条背景
+    for( $i=0 ; $i<4; $i++ ){
+        //设置干扰线颜色
+        $linecolor = imagecolorallocate($image,rand(80,220), rand(80,220), rand(80,220));
+        //显示干扰线
+        imageline($image,rand(1,119), rand(1,29), rand(1,119), rand(1,29), $linecolor);
+    }
+    //设置资源图像显示格式
+    header('content-type:image/png');
+    //显示资源图像
+    imagepng($image);
+    // 销毁
+    imagedestroy($image);
+
+、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、
+
+
+表单验证
+
+<meta charset='utf-8'>
+<?php
+    
+    session_start();
+    $phonenumber = $password = $authcode = "";
+    $phonenumber = getstr($_POST['phonenumber']);
+    $password = getstr($_POST['password']);
+    $authcode = getstr($_POST['authcode']);
+    //if( strtolower($authcode) == $_SESSION['authcode'] ){
+    if( $authcode == $_SESSION['authcode'] ){
+        echo '<font color="#0000CC">输入正确</font>';
+    }else{
+        echo '<font color="#CC0000">输入错误</font>';
+    }
+    function getstr($string){
+        
+        $string = htmlspecialchars($string);
+        $string = trim($string);
+        $string = stripslashes($string);
+        return $string;
+    }
+
+、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、
+
+验证手机号
+
+preg_match（"/13[123569]{1}\d{8}|15[1235689]\d{8}|188\d{8}/"，$number);
+
+验证名字
+
+$name = test_input($_POST["name"]);
+if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+  $nameErr = "只允许字母和空格！"; 
+}
+
+验证email
+
+$name = test_input($_POST["name"]);
+if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+  $nameErr = "只允许字母和空格！"; 
+}
+
+验证 url
+
+$website = test_input($_POST["website"]);
+if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%
+=~_|]/i",$website)) {
+  $websiteErr = "无效的 URL"; 
+}

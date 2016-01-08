@@ -1,0 +1,37 @@
+网站名称：{dede:global.cfg_webname/}
+
+安装目录：{dede:global.cfg_cmspath/}为安装目录，在域名根目录下时返回为空
+
+首页网址：{dede:global.cfg_basehost/}网站主页url
+
+根目录网址：{dede:global.cfg_cmsurl/}需开启多站点支持
+
+友情链接：image、textall 为图片链接；text 为文字连接
+{dede:flink row='24' type='image' titlelen="24" typeid="0"}
+底层标签 [field:link /]
+{/dede:flink}
+
+<span>
+	<span><a href="{dede:global.cfg_cmsurl/}/data/sitemap.html">网站地图</a></span>&nbsp;|&nbsp;
+	<span><a href="{dede:global.cfg_dataurl/}/rssmap.html">RSS订阅</a></span>&nbsp;|&nbsp;
+	<span><a href="{dede:global.cfg_cmsurl/}/tags.php">TAG标签</a></span>&nbsp;|&nbsp;
+	<span><a href="http://localhost/dedecms/dede/login.php">管理员登录</a></span>
+</span>
+
+
+添加文章自定义属性选项：
+insert into 'yeshi_arcatt' (sortid,att,attname) values (9,'z','吃');
+alter table 'yeshi_archives' modify 'flag' set ('h','c','f','a','s','b','p','j','z') default NULL;
+
+
+
+
+
+
+
+
+
+
+
+
+

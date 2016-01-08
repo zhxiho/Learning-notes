@@ -1,0 +1,6 @@
+figure  figcaption  语义化标签，
+
+
+figure：用于规定独立的流内容（图像、图表、照片、代码）
+
+figcaption：与figure配套使用，用于标签定义figure元素的标签

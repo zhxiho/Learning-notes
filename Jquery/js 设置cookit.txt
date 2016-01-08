@@ -1,0 +1,127 @@
+JavaScript code
+?
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+var Cookie=new Object(); 
+Cookie.setCookie=function(name, value, option){ 
+    var str=name+'='+escape(value); 
+    if(option){ 
+        if(option.expireHours){ 
+            var d=new Date(); 
+            d.setTime(d.getTime()+option.expireHours*3600*1000); 
+            str+='; expires='+d.toGMTString(); 
+        } 
+        if(option.path) str+='; path='+option.path; 
+        if(option.domain) str+='; domain='+option.domain; 
+        if(option.secure) str+='; true'; 
+    } 
+    document.cookie=str; 
+} 
+Cookie.getCookie=function(name){ 
+    var arr = document.cookie.split('; '); 
+    if(arr.length==0) return ''; 
+    for(var i=0; i <arr.length; i++){ 
+        tmp = arr[i].split('='); 
+        if(tmp[0]==name) return unescape(tmp[1]); 
+    } 
+    return ''; 
+} 
+Cookie.delCookie=function(name){ 
+    this.setCookie(name,'',{expireHours:-1}); 
+} 
+ 
+/**How to use it 
+Cookie.setCookie('own','this is cookie test!'); 
+alert(Cookie.getCookie('own')); 
+Cookie.delCookie('own'); 
+alert(Cookie.getCookie('own')); 
+**/
+
+
+
+
+
+
+
+
+
+我写了个完整的读写cookie的函数。之前在一个公司做的购物车。粘贴部分如下。
+
+
+//方法名  writeCookie(strCookie) 
+//功能    将商品写到cookie中 
+//多个商品及商品的属性都用字符串拼凑起来，依次存放在cookie中，且修改，删除商品方法都将调用此方法
+//注：此方法从2007年7月25日开始不再使用，改用writeCookie2方法
+    function writeCookie1( strCookie )
+    {
+        document.cookie = "Goods=" + strCookie + ";";
+    }
+    
+    //方法名writeCookie2
+    //此方法允许设置cookie的名称（key）和值（value） 
+    //此方法被添加桌号的方法addZhuo()调用
+    function writeCookie2( cookName, cookValue )
+    {
+  	var never = new Date();
+  	
+  	//设置cookie的有效期为半天
+        //10*365*24*60*60*1000 = 10年 
+  	never.setTime(never.getTime() + 10*60*1000);//设置有效期为10分钟 
+  	
+        document.cookie = cookName + "=" + cookValue + ";expires=" + never.toGMTString() + ";";
+    }
+    
+    //此方法清空所有cookie，包括cookieName和cookieValue
+    function clearCookie()
+  {
+  	 document.cookie = "";
+  	 alert("清除成功");
+  }
+
+// 功能	 从cookie中取出指定cookinName的值，在这个项目中其实取出的是组成商品及商品属性拼凑的字符串.
+//   但并未解析,下面很多方法将调用此方法返回的字符串来解析出二维数组的多个商品或一维数组某个具体商品
+// 参数    name 要读取的Cookie的名字
+// 参数    defu 如果Cookie不存在时返回的默认值
+// 返回值  读到的Cookie字符串或者默认值
+    function RCk (name, defu){
+var arg=name+"="
+var ck=document.cookie
+if (ck.indexOf(arg)!=-1){
+var vstr=ck.indexOf(arg)+arg.length
+if (ck.indexOf(";",vstr)==-1) var vend=ck.length
+else var vend=ck.indexOf(";",vstr)
+return ck.substring(vstr,vend);
+   }else return defu
+    }

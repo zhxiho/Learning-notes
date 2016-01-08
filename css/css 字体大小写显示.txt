@@ -1,0 +1,8 @@
+{text-transform: uppercase}  全部英文字母大写
+{text-transform: lowercase}  全部英文字母小写
+{text-transform: capitalize}  英文单词首字母大写
+
+style="cursor: pointer;"  鼠标放上时显示手型连接提示 
+
+
+ 

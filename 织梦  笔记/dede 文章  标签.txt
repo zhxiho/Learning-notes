@@ -1,0 +1,39 @@
+title:{dede:field.title/}_{dede:global.cfg_webname/}
+
+keywords : {dede:field.keywords/}
+
+descript : {dede:field.description function='html2text(@me)'/}
+
+css/js : {dede:global.cfg_templets_skin/}/css/style.css
+
+当前位置:{dede:field name='position'/}
+
+时间：{dede:field.pubdate function="MyDate('Y-m-d H:i',@me)"/}
+
+题目：{dede:field.title/}
+
+作者:{dede:field.writer/}
+
+来源于：{dede:field.source/}
+
+点击数：<script src="{dede:field name='phpurl'/}/count.php?view=yes&aid={dede:field name='id'/}&mid={dede:field name='mid'/}" type='text/javascript' language="javascript"></script>
+
+责任编辑：{dede:adminname/}
+
+文章简介：{dede:field.description}
+
+正文：{dede:field.body/}
+
+上一篇：{dede:prenext get='pre'/}
+
+下一篇：{dede:prenext get='next'/}
+
+
+dedecms设置上一篇、下一篇文章标题字数的方法：
+第一步：找到dedecms下“include/arc.archives.class.php”文件，用DW或记事本打开。
+第二步：查找 $this->PreNext['pre']="上一篇:{$preRow['title']}"; 在这一行上面加上 $preRow['title']=cn_substr($preRow['title'],30); ，30的意思就是30个字节，也就是15个汉字。这个可以根据实际情况，自行设定。
+第三步：查找 $this->PreNext['next']="下一篇:{$nextRow['title']}"; 在这一行上面加上 $nextRow['title']=cn_substr($nextRow['title'],30); 。
+
+收藏：<a href="{dede:global name='cfg_phpurl'/}/stow.php?aid={dede:field.id/}">收藏</a>
+
+推荐:<a href="{dede:global name='cfg_phpurl'/}/recommend.php?aid={dede:field.id/}">推荐</a>

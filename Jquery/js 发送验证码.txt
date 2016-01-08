@@ -1,0 +1,155 @@
+
+                        <script>
+$(function(){
+	if('' != '') {
+		alert('');
+	}
+	$(".public_form").Validform({
+	  tiptype:function(msg,o,cssctl){
+
+		if(!o.obj.is("form")){
+			var objtip=o.obj.siblings(".error_message");
+			cssctl(objtip,o.type);
+			objtip.text(msg);
+		}	
+	  },
+      callback:function(form){
+			var h_vailCode = $("#h_vailCode").val();
+			var vailCode = $("#vailCode").val();
+			var cusPhone = $("#cusPhone").val();
+			
+			if(h_vailCode == ''){
+				$("#v2").removeClass("Validform_right Validform_loading").addClass("Validform_checktip Validform_wrong").text("请先获取短信验证码！");
+				$("#vailCode").focus();
+				return false;
+			}
+			if(h_vailCode != vailCode){
+				$("#v2").removeClass("Validform_right Validform_loading").addClass("Validform_checktip Validform_wrong").text("短信验证码不正确！");
+				$("#vailCode").focus();
+				return false;
+			}
+			
+			$.ajax({ 
+				type:"POST",
+				url: encodeURI("/finance/validPhone.shtml"),
+				data: {cusPhone:cusPhone
+					},
+				contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+				dataType:"html", 
+				async:false , 
+				success: function(data){
+					$("#h_isHasPhone").val(data);
+					if (data != "" && "1" == data) {
+						$("#v1").removeClass("Validform_right Validform_loading").addClass("Validform_checktip Validform_wrong").text("此手机号码已经注册过！");
+					}else{
+						window.location.href="/finance/toReg2.shtml?cusPhone=" + cusPhone;
+					}
+				}
+		    });
+			return false;
+		},
+		usePlugin:{
+			jqtransform:{}
+		}
+	  });
+});
+
+/**检查手机号是否注册过*/
+function checkPhone(inputV) {
+	var cusPhone = inputV.value;
+	if(cusPhone.length == 11) {
+		$.ajax({ 
+			type:"POST",
+			url: encodeURI("/finance/validPhone.shtml"),
+			data: {cusPhone:cusPhone
+				},
+			contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+			dataType:"html", 
+			async:false , 
+			success: function(data){
+				$("#h_isHasPhone").val(data);
+				if (data != "" && "1" == data) {
+					$("#v1").removeClass("Validform_right Validform_loading").addClass("Validform_checktip Validform_wrong").text("此手机号码已经注册过！");
+				}
+			}
+	    });
+	}
+}
+
+var t = 120;  //重置时间
+var timer;
+
+/**发送短信验证*/
+function sendSms() {	
+	var cusPhone = $("#cusPhone").val();
+	var h_isHasPhone = $("#h_isHasPhone").val();
+	var smsType = '1';  //1 注册sms_reg (短信验证码业务)   
+	if(cusPhone.length == 11 && "0" == h_isHasPhone) {
+		$.ajax({ 
+			type:"POST",
+			url: encodeURI("/finance/sendSms.shtml"),
+			data: {cusPhone:cusPhone,
+				   smsType:smsType
+				},
+			contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+			dataType:"html", 
+			async:false , 
+			success: function(data){
+				if (data != "" && "0" != data) {
+  						$("#h_vailCode").val(data);
+  						timer = window.setInterval(shua,1000);
+  						t = 120;
+				} else {
+					var htmlStr = "<span class='highlight'><b>" + "获取验证码失败，请稍后再试！" +"</b></span>";
+					commAlert(htmlStr);
+				}
+			}
+		});
+	} else if("1" == h_isHasPhone){
+		$("#v1").removeClass("Validform_right Validform_loading").addClass("Validform_checktip Validform_wrong").text("此手机号码已经注册过！");
+		$("#cusPhone").focus();
+	} else {
+		$("#v1").removeClass("Validform_right Validform_loading").addClass("Validform_checktip Validform_wrong").text("请输入手机号码！");
+		$("#cusPhone").focus();
+	}
+}
+
+function shua()  { 
+	t = t-1;
+	$("#btn_sendsms").val(t + "秒后再次发送");
+	$("#btn_sendsms").attr('disabled',true);//设置disabled属性为true，按钮不可用
+	if (t==0)  {
+		$("#btn_sendsms").val("获取短信验证码");
+		$("#btn_sendsms").attr('disabled',false);//设置disabled，按钮可用
+		clearInterval(timer);
+	} 
+} 
+
+/*控制【下一步】按钮显示置灰*/
+function changeBtnState(inputV) {
+	if(inputV.checked) {
+		$("#btn_sub").attr('disabled',false);//设置disabled属性为false，按钮可用
+		$("#btn_sub").removeClass("public_btn_de");
+		$("#btn_sub").attr('class','public_btn');
+	} else {
+		$("#btn_sub").attr('disabled',true);//设置disabled属性为true，按钮不可用 
+		$("#btn_sub").removeClass("public_btn");
+		$("#btn_sub").attr('class','public_btn_de');
+	}
+}
+</script>
+
+
+
+
+
+<script>
+function commAlert(htmlStr){
+	 $("#commAlert").html(htmlStr);	
+	 $('#pop_pubilc').bPopup({
+		  speed: 450,
+          transition: 'slideBack',
+		  closeClass: 'pop_contact_us_close'
+		 });  
+}
+</script>

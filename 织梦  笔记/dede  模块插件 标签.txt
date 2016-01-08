@@ -1,0 +1,78 @@
+投票模块：
+{dede:vote id='1' lineheight='22' tablewidth='100%' titlebgcolor='#EDEDE2' titlebackground='' tablebgcolor='#FFFFFF'}
+{/dede:vote}
+<script language="javascript" src="http://localhost/data/vote/vote_1.js"></script>
+
+显示留言模块：
+系统留言显示代码：
+<table style="width:100%;background-color:#F8F8F8;margin-top:-20px;">
+	{dede:loop table='dede_guestbook' sort='dtime' row='10' titlelen='30' typeid='50' if='ischeck=1'}
+	<tr>
+		<td  style="height:25px;width:120px;text-align:center;">[field:uname /]</td>
+		<td colspan="2" style="height:25px;width:200px;">时间 : 2015-09-08 17:04</td>
+		<td colspan="2" style="height:25px;width:200px;text-align:center;">主题 : 主题题目</td>
+		<td colspan="2" style="height:25px;width:200px;text-align:center;">[field:ip /]</td>
+	</tr>
+	<tr>
+		<td  style="border-bottom:1px dashed #777;text-align:center;height:80px;width:120px;"><img style="width:60px;height:60px;" src="[field:phpurl/]/plus/guestbook/images/[field:face /].gif" alt="" /></td>
+		<td colspan="6" style="border-bottom:1px dashed #777;height:80px;">[field:msg function="cn_substr('@me',30)"/]</td>
+	</tr>
+	{/dede:loop}
+</table>
+自定义留言表单代码：
+<form action="{dede:global.cfg_cmsurl/}/plus/diy.php" enctype="multipart/form-data" method="post">
+<input type="hidden" name="action" value="post" />
+<input type="hidden" name="diyid" value="1" />
+<input type="hidden" name="do" value="2" />
+<table style="width:97%;" cellpadding="0" cellspacing="1">
+<tr>
+  <td align="right" valign="top">昵称：</td>
+  <td><input type='text' name='name' id='name' style='width:250px'  class='intxt' value='游客' />
+</td>
+</tr>
+<tr>
+  <td align="right" valign="top">主题：</td>
+  <td><input type='text' name='theme' id='theme' style='width:250px'  class='intxt' value='' />
+</td>
+</tr>
+<tr>
+  <td align="right" valign="top">电子邮件：</td>
+  <td><input type='text' name='emall' id='emall' style='width:250px'  class='intxt' value='' />
+</td>
+</tr>
+<tr>
+  <td align="right" valign="top">留言：</td>
+  <td><textarea name='message' id='message' style='width:90%;height:80'></textarea>
+</td>
+</tr>
+<tr>
+  <td>
+  <input  type="hidden" name="time" value="{dede:php} echo $showtime=date('Y-m-d H:i:s'); {/dede:php}" type="text" id="time" style="width:250px"/>
+
+  </td>
+</tr>
+
+<input type="hidden" name="dede_fields" value="name,text;theme,text;emall,text;message,multitext" />
+<input type="hidden" name="dede_fieldshash" value="8f5ebd3347cba468950b80c82e39fa71" /></table>
+<div align='center' style='height:30px;padding-top:10px;'>
+<input type="submit" name="submit" value="提 交" class='coolbg' />
+&nbsp;
+<input type="reset" name="reset" value="重 置" class='coolbg' />
+</div>
+</form>
+					
+<div >
+	<ul>
+{dede:loop table='dede_diyform1' sort='' row='50' if=''}
+ <li>
+ 主题名：<a href='[field:theme/]' target="_blank">[field:theme/]</a>
+ 访客：[field:name/]
+ emall:[field:emall/]
+ 留言:[field:message/]
+时间:[field:time/]
+ </li>
+{/dede:loop}
+	</ul>
+</div>
+
+

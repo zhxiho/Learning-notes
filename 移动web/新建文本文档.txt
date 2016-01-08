@@ -1,0 +1,109 @@
+-webkit-transition:all .2s linear;	//代表chrome、safari私有属性
+-ms-transition:all .2s linear;		//代表IE浏览器私有属性
+-o-transition:all .2s linear;		//兼容 Opera浏览器
+-moz-transition:all .2s linear;    	//代表firefox浏览器私有属性
+transition:all .2s linear;
+
+
+一般电脑有800*600、1024*600、1024*768、1280*720、1280*768、1366*768这几种分辨率。
+
+pixel    移动开发像素知识
+iphone5  640(w)*1136(h) 屏幕设备分辨率dp
+px：	 逻辑像素，浏览器使用的抽象单位
+dp、pt：	 设备无关像素
+dpr：  	 设备像素缩放比
+
+ppi = (w*w+h*h)开根/4
+160>ppi>120->dpr=0.75;   240>ppi>160->dpr=1;  320>pppi>240->dpr=1.5; pi>320->dpr=2; 
+计算公式：1px = (dpr*dpr)*dp;
+
+最终 W = w /dpr ; H = h /dpr;
+
+viewport
+1：将web页面渲染在一个移动设备的viewport里面；iphone viewport为980px;
+2：缩放
+
+meta标签  (移动Web最佳viewport设置)
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+width:		设置布局viewport的特定值（“device-width”）;
+		device-width：设备宽度；
+initial-scale:	设置页面的初始缩放比；
+minimnm-sacle:	最小缩放；
+maximum-scale:	最大缩放；
+user-scalable:	用户能否缩放；值：no
+
+
+css Flexbox 弹性盒子布局
+display:-webkit-flex;//设置为弹性盒子
+flex:number(1/2/3/4/5/6);//设置分割比
+
+子元素水平排版位置
+justify-content:center;//
+justify-content:flex-start;/*default*/等于float:left;
+justify-content:flex-end;//等于float:right;
+justify-content:space-between;//两边对齐
+justify-content:space-around;//等边距
+
+
+flex-direction 子元素排版方向
+flex-direction:row;/*default*///水平正续
+flex-direction:row-reverse;//水平倒续
+flex-direction:column;//垂直正续
+flex-direction:column-reverse;//垂直倒续
+
+
+flex-wrap 	子元素拓展
+-webkit-flex-wrap:nowrap;/*default*/不进行拓展,当子元素宽度大于父元素宽度时，不进行拓展换行
+-webkit-flex-wrap:wrap;//进行拓展
+-webkit-flex-wrap:wrap-reverse;//反向拓展
+
+
+
+align-self	子元素属性排版
+align-self:flex-start;//居上
+align-self:flex-end;//居下
+align-self:center;//居中
+align-self:auto;/*default*/填充
+align-self:baseline;//
+align-self:stretch;//填充
+
+
+align-items	父元素设定子元素排版
+align-items:flex-start;/*default*/共同居上
+align-items:flex-end;//共同居下
+align-items:center;//共同居中
+align-items:bascline;
+align-items:stretch;//分比例分割填充
+
+align-content	
+align-content:flex-start;//
+align-content:flex-end;
+align-content:center;
+align-content:scape-between;
+align-content:scape-around;
+align-content:stretch;/*default*/
+
+order:-1;//排在最前面
+
+响应式设计   媒体查询
+@media screen and (max-width:980px;){
+	#index1{}
+	#index1{}
+	#index1{}
+}
+
+媒体类型：
+screen、print、handheld、all
+
+常用媒体查询参数：
+width		视口宽高
+height		视口宽高
+device-width	设备的宽度
+device-height	设备的高度
+orientation	检查设备处于横向（landscape）还是竖屏（portrait）
+
+
+
+
+
+

@@ -1,0 +1,143 @@
+使用 toggle() 方法来切换 hide() 和 show() 方法
+
+$(document).ready(function(){
+  $("button").click(function(){
+  $("p").toggle();
+  });
+});
+
+
+使用 hide() 和 show() 方法来隐藏和显示 HTML 元素：
+
+$(document).ready(function(){
+  $("#hide").click(function(){
+  $("p").hide();
+  });
+  $("#show").click(function(){
+  $("p").show();
+  });
+});
+
+
+下面是 jQuery 中事件方法的一些例子：
+
+$(document).ready(function)	将函数绑定到文档的就绪事件（当文档完成加载时）
+$(selector).click(function)	触发或将函数绑定到被选元素的点击事件
+$(selector).dblclick(function)	触发或将函数绑定到被选元素的双击事件
+$(selector).focus(function)	触发或将函数绑定到被选元素的获得焦点事件
+$(selector).mouseover(function)	触发或将函数绑定到被选元素的鼠标悬停事件
+
+
+
+更多的选择器实例
+语法	描述
+$(this)	当前 HTML 元素
+$("p")	所有 <p> 元素
+$("p.intro")	所有 class="intro" 的 <p> 元素
+$(".intro")	所有 class="intro" 的元素
+$("#intro")	id="intro" 的元素
+$("ul li:first")	每个 <ul> 的第一个 <li> 元素
+$("[href$='.jpg']")	所有带有以 ".jpg" 结尾的属性值的 href 属性
+$("div#intro .head")	id="intro" 的 <div> 元素中的所有 class="head" 的元素
+
+
+fadeIn()		用于淡入已隐藏的元素。
+fadeOut()		方法用于淡出可见元素。
+fadeToggle()		方法可以在 fadeIn() 与 fadeOut() 方法之间进行切换。
+fadeTo()		方法允许渐变为给定的不透明度（值介于 0 与 1 之间）。
+slideDown()		用于向下滑动元素。
+slideUp()		用于向上滑动元素。
+slideToggle()		方法可以在 slideDown() 与 slideUp() 方法之间进行切换
+
+jQuery animate() 方法用于创建自定义动画。
+$(selector).animate({params},speed,callback);
+默认情况下，所有 HTML 元素的位置都是静态的，并且无法移动。如需对位置进行操作，
+记得首先把元素的 CSS position 属性设置为 relative、fixed 或 absolute。
+$("div").animate({left:'250px'});
+
+ $("div").animate({
+      left:'250px',
+      opacity:'0.5',
+      height:'150px',
+      width:'150px'
+    });
+提示：可以用 animate() 方法来操作所有 CSS 属性吗？
+是的，几乎可以！不过，需要记住一件重要的事情：当使用 animate() 时，必须使用 Camel 标记法书写所有的属性名，比如，必须使用 paddingLeft 而不是 padding-left，使用 marginRight 而不是 margin-right，等等。
+同时，色彩动画并不包含在核心 jQuery 库中。
+如果需要生成颜色动画，您需要从 jQuery.com 下载 Color Animations 插件。
+
+text() - 设置或返回所选元素的文本内容
+html() - 设置或返回所选元素的内容（包括 HTML 标记）
+val() - 设置或返回表单字段的值
+attr() 方法也用于设置/改变属性值
+
+append() - 在被选元素的结尾插入内容
+prepend() - 在被选元素的开头插入内容
+after() - 在被选元素之后插入内容
+before() - 在被选元素之前插入内容
+
+remove() - 删除被选元素（及其子元素）
+empty() - 从被选元素中删除子元素
+remove() 方法也可接受一个参数，允许您对被删元素进行过滤
+
+addClass() - 向被选元素添加一个或多个类
+removeClass() - 从被选元素删除一个或多个类
+toggleClass() - 对被选元素进行添加/删除类的切换操作
+css() - 设置或返回样式属性
+
+jQuery width() 和 height() 方法
+width() 方法设置或返回元素的宽度（不包括内边距、边框或外边距）。
+height() 方法设置或返回元素的高度（不包括内边距、边框或外边距）
+innerWidth() 方法返回元素的宽度（包括内边距）。
+innerHeight() 方法返回元素的高度（包括内边距）。
+outerWidth() 方法返回元素的宽度（包括内边距和边框）。
+outerHeight() 方法返回元素的高度（包括内边距和边框）。
+
+
+这些 jQuery 方法很有用，它们用于向上遍历 DOM 树：
+parent() 方法返回被选元素的直接父元素。
+parents() 方法返回被选元素的所有祖先元素，它一路向上直到文档的根元素 (<html>)。
+\您也可以使用可选参数来过滤对祖先元素的搜索。
+$("span").parents("ul");
+parentsUntil() 方法返回介于两个给定元素之间的所有祖先元素。
+
+下面是两个用于向下遍历 DOM 树的 jQuery 方法：
+children() 方法返回被选元素的所有直接子元素。
+您也可以使用可选参数来过滤对子元素的搜索。
+$("div").children("p.1");
+find() 方法返回被选元素的后代元素，一路向下直到最后一个后代。
+下面的例子返回 <div> 的所有后代：
+ $("div").find("*");
+
+有许多有用的方法让我们在 DOM 树进行水平遍历：
+siblings() 方法返回被选元素的所有同胞元素。
+您也可以使用可选参数来过滤对同胞元素的搜索。
+$("h2").siblings("p");
+next() 方法返回被选元素的下一个同胞元素。
+nextAll() 方法返回被选元素的所有跟随的同胞元素。
+nextUntil() 方法返回介于两个给定参数之间的所有跟随的同胞元素。
+prev(), prevAll() 以及 prevUntil() 方法的工作方式与上面的方法类似，只不过方向相反而已：它们返回的是前面的同胞元素（在 DOM 树中沿着同胞元素向后遍历，而不是向前）。
+
+first() 方法返回被选元素的首个元素。
+last() 方法返回被选元素的最后一个元素。
+eq() 方法返回被选元素中带有指定索引号的元素。索引号从 0 开始，因此首个元素的索引号是 0 而不是 1
+filter() 方法允许您规定一个标准。不匹配这个标准的元素会被从集合中删除，匹配的元素会被返回。
+ $("p").filter(".intro");
+not() 方法返回不匹配标准的所有元素。
+$("p").not(".intro");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

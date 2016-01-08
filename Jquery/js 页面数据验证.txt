@@ -1,0 +1,293 @@
+1:js 字符串长度限制、判断字符长度 、js限制输入、限制不能输入、textarea 长度限制
+<script>
+function test()
+{
+if(document.a.b.value.length>50)
+{
+alert("不能超过50个字符！");
+document.a.b.focus();
+return false;
+}
+}
+</script>
+2:js验证邮箱格式
+<SCRIPT LANGUAGE=javascript RUNAT=Server>
+function isEmail(strEmail) {
+if (strEmail.search(/^w+((-w+)|(.w+))*@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+)*.[A-Za-z0-9]+$/) != -1)
+return true;
+else
+alert("oh");
+}
+</SCRIPT>
+
+3: js屏蔽关键字(这里屏蔽***和****)
+<script language="javascript1.2">
+function test() {
+if((a.b.value.indexOf ("***") == 0)||(a.b.value.indexOf ("****") == 0)){
+alert(":)");
+a.b.focus();
+return false;}
+}
+</script>
+
+4: js两次输入密码是否相同
+<script>
+function check()
+{
+with(document.all){
+if(input1.value!=input2.value)
+{
+alert("false")
+input1.value = "";
+input2.value = "";
+}
+else document.forms[0].submit();
+}
+}
+</script>
+
+5:js屏蔽右键
+oncontextmenu="return false" ondragstart="return false" onselectstart="return false"加在body中
+6: js判断表单项不能为空
+<script  language="javascript:;" onClick="javascript:tagshow(event, 'javascript');" target="_self">javascript"><!--
+function  CheckForm()
+{
+if  (document.form.name.value.length  ==  0)  {
+alert("请输入您姓名!");
+document.form.name.focus();
+return  false;
+}
+return  true;
+}
+-->
+</script>
+
+7：js比较两个表单项的值是否相同
+<script  language="javascript">
+<!--
+function  CheckForm()
+if  (document.form.PWD.value  !=  document.form.PWD_Again.value)  {
+alert("您两次输入的密码不一样！请重新输入.");
+document.ADDUser.PWD.focus();
+return  false;
+}
+return  true;
+}
+-->
+</script>
+
+8:js判断表单项只能为数字和"_",用于电话/银行帐号验证上,可扩展到域名注册等
+<script  language="javascript">
+<!--
+function  isNumber(String)
+{
+var  Letters  =  "1234567890-";  //可以自己增加可输入值
+var  i;
+var  c;
+if(String.charAt(  0  )=='-')
+return  false;
+if(  String.charAt(  String.length  -  1  )  ==  '-'  )
+return  false;
+for(  i  =  0;  i  <  String.length;  i  ++  )
+{
+c  =  String.charAt(  i  );
+if  (Letters.indexOf(  c  )  <  0)
+return  false;
+}
+return  true;
+}
+function  CheckForm()
+{
+if(!  isNumber(document.form.TEL.value))  {
+alert("您的电话号码不合法！");
+document.form.TEL.focus();
+return  false;
+}
+return  true;
+}
+-->
+</script>
+
+ 
+
+9：js判断表单项输入数值/长度限定
+<script  language="javascript"><!--
+function  CheckForm()
+{
+if  (document.form.count.value  >  100  ||  document.form.count.value  <  1)
+{
+alert("输入数值不能小于零大于100!");
+document.form.count.focus();
+return  false;
+}
+if  (document.form.MESSAGE.value.length<10)
+{
+alert("输入文字小于10!");
+document.form.MESSAGE.focus();
+return  false;
+}
+return  true;
+}
+//-->
+</script>
+
+10：js判断中文/英文/数字/邮件地址合法性判断
+
+<SCRIPT  LANGUAGE="javascript"><!--
+function  isEnglish(name)  //英文值检测
+{
+if(name.length  ==  0)
+return  false;
+for(i  =  0;  i  <  name.length;  i++)  {
+if(name.charCodeAt(i)  >  128)
+return  false;
+}
+return  true;
+}
+
+function  isChinese(name)  //中文值检测
+{
+if(name.length  ==  0)
+return  false;
+for(i  =  0;  i  <  name.length;  i++)  {
+if(name.charCodeAt(i)  >  128)
+return  true;
+}
+return  false;
+}
+
+function  isMail(name)  //  E-mail值检测
+{
+if(!  isEnglish(name))
+return  false;
+i  =  name.indexOf("  at  ");
+j  =  name  dot  lastIndexOf("  at  ");
+if(i  ==  -1)
+return  false;
+if(i  !=  j)
+return  false;
+if(i  ==  name  dot  length)
+return  false;
+return  true;
+}
+
+function  isNumber(name)  //数值检测
+{
+if(name.length  ==  0)
+return  false;
+for(i  =  0;  i  <  name.length;  i++)  {
+if(name.charAt(i)  <  "0"  ||  name.charAt(i)  >  "9")
+return  false;
+}
+return  true;
+}
+
+function  CheckForm()
+{
+if(!  isMail(form.Email.value))  {
+alert("您的电子邮件不合法！");
+form.Email.focus();
+return  false;
+}
+if(!  isEnglish(form.name.value))  {
+alert("英文名不合法！");
+form.name.focus();
+return  false;
+}
+if(!  isChinese(form.cnname.value))  {
+alert("中文名不合法！");
+form.cnname.focus();
+return  false;
+}
+if(!  isNumber(form.PublicZipCode.value))  {
+alert("邮政编码不合法！");
+form.PublicZipCode.focus();
+return  false;
+}
+return  true;
+}
+//-->
+</SCRIPT>
+
+ 
+
+11：js限定表单项不能输入的字符
+<script  language="javascript"><!--
+
+function  contain(str,charset)//  字符串包含测试函数
+{
+var  i;
+for(i=0;i<charset.length;i++)
+if(str.indexOf(charset.charAt(i))>=0)
+return  true;
+return  false;
+}
+
+function  CheckForm()
+{
+if  ((contain(document.form.NAME.value,  "%()><"))  ||  (contain(document.form.MESSAGE.value,  "%()><")))
+{
+alert("输入了非法字符");
+document.form.NAME.focus();
+return  false;
+}
+return  true;
+}
+//-->
+</script>
+
+12：js检查一段字符串是否全由数字组成         
+<script language="Javascript"><!--         
+function checkNum(str){return str.match(/D/)==null}         
+alert(checkNum("1232142141"))         
+alert(checkNum("123214214a1"))         
+// --></script>            
+
+
+13:js怎么判断是否是字符
+<script language="Javascript"><!--         
+function checkChr(str)  
+if (/[^x00-xff]/g.test(s)) alert("含有汉字");        
+else alert("全是字符");    
+// --></script>        
+ 
+14: 邮箱格式验证  
+<script language="Javascript"><!-- 
+//函数名：chkemail   
+//功能介绍：检查是否为Email Address   
+//参数说明：要检查的字符串   
+//返回值：0：不是 1：是   
+function chkemail(a)   
+{ var i=a.length;   
+var temp = a.indexOf('@');   
+var tempd = a.indexOf('.');   
+if (temp > 1) {   
+if ((i-temp) > 3){   
+if ((i-tempd)>0){   
+return 1;   
+}   
+ 
+}   
+}   
+return 0;   
+}   
+// --></script>
+
+
+15.如果其中有数字英文符号等，用楼上的 alert("1sS#符".length) 方法是极度不准确的。其结果为 5
+
+
+alert(len("1sS#符")) //英文、数字、符号均为一个字节,汉字为两个。 因此结果为 6
+
+function len(s) {
+var l = 0;
+var a = s.split("");
+for (var i=0;i<a.length;i++) {
+ if (a[i].charCodeAt(0)<299) {
+ l++;
+ } else {
+ l+=2;
+ }
+}
+return l;
+}

@@ -1,0 +1,6 @@
+
+linux 打包命令
+mvn package
+
+linux 拷贝文件命令
+scp -P 22 ./operateSupport.war root@10.174.157.182:/usr/local/tomcat5/webapps

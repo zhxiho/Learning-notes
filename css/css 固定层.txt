@@ -1,0 +1,4 @@
+position  定位
+
+fixed		//固定位，以浏览器窗口绝对定位
+absolute	//以父元素绝对定位

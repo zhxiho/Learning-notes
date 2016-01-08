@@ -1,0 +1,106 @@
+
+
+首页标签：
+
+网站标题：{dede:global.cfg_webname/}
+
+标题描述：{dede:global.cfg_description/}
+
+网站标签：{dede:global.cfg_keywords/}
+
+head css、js 链接：{dede:global.cfg_templets_skin/}/css/style.css
+
+搜索form:
+<form  name="formsearch" action="{dede:global.cfg_cmsurl/}/plus/search.php">
+	<div class="form">
+		<h4>搜索</h4>
+		<input type="hidden" name="kwtype" value="0" />
+		<input name="q" type="text" class="search-keyword" id="search-keyword" value="在这里搜索..." onfocus="if(this.value=='在这里搜索...'){this.value='';}"  onblur="if(this.value==''){this.value='在这里搜索...';}" />
+		<select name="searchtype" class="search-option" id="search-option">
+			<option value="title" selected='1'>检索标题</option>
+			<option value="titlekeyword">智能模糊</option>
+		</select>
+		<button type="submit" class="search-submit">搜索</button>
+        </div>
+</form>
+
+TAG 热搜：热搜：{dede:tag row='4' getall='1' sort='month'} <a href='[field:link/]'>[field:tag /]</a> {/dede:tag}
+
+导航栏：
+<ul>
+	<li><a href="{dede:global.cfg_cmsurl/}/">首&nbsp;&nbsp;页</a></li>
+	{dede:channel type='top' row='5'}
+	<li><a href='[field:typeurl/]'>[field:typename/]</a></li>
+	{/dede:channel}
+</ul>
+
+热点新闻：
+<div class="text"><h3>热点新闻</h3></div>
+<table style="width:100%;text-align:center;">
+<tr>
+	{dede:arclist row=4 titlelen=20 orderby='click' flag='h' typeid='1' col='2' infolen='24' imgwidth='400' imgheight='300' listtype='text/images/textall' limit='0,1'}
+	<td>
+	<p><a href="[field:arcurl/]">[field:title/]</a></p>
+	<a href="[field:arcurl/]">
+	<img onMouseMove="get1(this);" src="[field:picname/]"alt="[field:fulltitle/]" />
+	</a>
+	</td>
+	{/dede:arclist}
+</tr>
+</table>
+
+
+新闻标题列表：
+<ul><!-- <span>[field:typelink/]</span> 显示文章类型 -->
+	{dede:arclist row=7 limit='0,6' titlelen=32 typeid="1"}
+	<li><a href="[field:arcurl/]">[field:title/]</a></li>
+	{/dede:arclist}
+</ul>
+
+
+带图片的新闻列表：
+{dede:arclist row=3 titlelen=36 typeid="4"}
+	<h5 style="margin-top:0px;"><a href="[field:arcurl/]">[field:title/]</a></h5>
+	<img style="width:60px;height:60px;margin:-10px 0 0 10px;" src="[field:picname/]" alt="[field:fulltitle/]" />
+	<p style="font-size:14px;line-height:25px;width:540px;height:60px;margin:-55px 0 -10px 80px;">[field:description 		function="cn_substr(@me,150)"/]...<a href="[field:arcurl/]">[查看全文]</a></p><hr>
+{/dede:arclist}
+
+包含head文件：
+{dede:include filename="head.html"/}
+
+包含footer文件：
+{dede:include filename="footer.html"/}
+
+友情链接：
+{dede:flink/}
+
+文档类型：
+[field:typelink/]
+
+阅读量：
+[field:click/]
+
+
+全站动态化：
+系统设置-》sql命令行工具
+1.将网站所有栏目设置为动态页/2.将网站所有文档设置为动态页
+update dede_arctype set isdefault=-1;
+update dede_archives set ismake=-1;
+
+还原成静态/还原成静态
+update dede_arctype set isdefault=1;
+update dede_archives set ismake=1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+

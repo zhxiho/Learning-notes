@@ -1,0 +1,275 @@
+/**
+ * 
+ */
+$(document).ready(function(){
+	document.body.scrollTop = 0;
+	/*
+	*下一页下拉按钮
+	*/
+	var timer1 = null;
+	autopaly();
+	var index = 1;
+	function autopaly(){
+		timer1 = setInterval(function(){
+			if(index == 1){
+				$(".Xnext").css("margin-top","25px");
+				$(".Xnext").css("opacity","1");
+				index = 2;
+			}else if(index == 2){
+				$(".Xnext").css("opacity","0");
+				index = 3;
+			}else if(index == 3){
+				$(".Xnext").css("margin-top","-30px");
+				index = 1;
+			}
+		},480);
+	}
+	
+	/*
+	*banner 背景颜色
+	*/
+	$(".XXImg01").css("transform","translateX(47%)");
+	$(".XXImg01").css("opacity","1");
+	$(".XXImg02").css("transform","translateX(-47%)");
+	$(".XXImg02").css("opacity","1");
+	$("#NEXT-1").css("background","#00AAEE");
+	var islocation = true;
+	window.onscroll = function(){
+		var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+		if ( osTop > 660 ){
+			$(".topbar_nav").css("opacity","0.9");
+		}
+		if ( osTop < 660 ){
+			$(".topbar_nav").css("opacity","1");
+		}
+		if ( osTop == 0 || osTop < 100 ){
+			$("#NEXT-1").css("background","#00AAEE");
+			$("#NEXT-2").css("background","#F1F1F1");
+			$("#NEXT-3").css("background","#F1F1F1");
+			$("#NEXT-4").css("background","#F1F1F1");
+			$(".XXImg01").css("transform","translateX(47%)");
+			$(".XXImg01").css("opacity","1");
+			$(".XXImg02").css("transform","translateX(-47%)");
+			$(".XXImg02").css("opacity","1");
+			$(".XXImg2").css("transform","translateX(40%)");
+			$(".XXImg2").css("opacity","0");
+			$(".XXImg3").css("transform","translateX(-40%)");
+			$(".XXImg3").css("opacity","0");
+			$(".XXImg4").css("transform","translateX(40%)");
+			$(".XXImg4").css("opacity","0");
+		}
+		if ( osTop > 590 && osTop < 710 ){
+			$("#NEXT-1").css("background","#F1F1F1");
+			$("#NEXT-2").css("background","#00AAEE");
+			$("#NEXT-3").css("background","#F1F1F1");
+			$("#NEXT-4").css("background","#F1F1F1");
+			$(".XXImg01").css("transform","translateX(-47%)");
+			$(".XXImg01").css("opacity","0");
+			$(".XXImg02").css("transform","translateX(47%)");
+			$(".XXImg02").css("opacity","0");
+			$(".XXImg2").css("transform","translateX(-40%)");
+			$(".XXImg2").css("opacity","1");
+			$(".XXImg3").css("transform","translateX(-40%)");
+			$(".XXImg3").css("opacity","0");
+			$(".XXImg4").css("transform","translateX(40%)");
+			$(".XXImg4").css("opacity","0");
+		}
+		if ( osTop > 1260 && osTop < 1380 ){
+			$("#NEXT-1").css("background","#F1F1F1");
+			$("#NEXT-2").css("background","#F1F1F1");
+			$("#NEXT-3").css("background","#00AAEE");
+			$("#NEXT-4").css("background","#F1F1F1");
+			$(".XXImg01").css("transform","translateX(-47%)");
+			$(".XXImg01").css("opacity","0");
+			$(".XXImg02").css("transform","translateX(47%)");
+			$(".XXImg02").css("opacity","0");
+			$(".XXImg2").css("transform","translateX(40%)");
+			$(".XXImg2").css("opacity","0");
+			$(".XXImg3").css("transform","translateX(40%)");
+			$(".XXImg3").css("opacity","1");
+			$(".XXImg4").css("transform","translateX(40%)");
+			$(".XXImg4").css("opacity","0");
+		}
+		if ( osTop > 1940 && osTop < 2060 ){
+			$("#NEXT-1").css("background","#F1F1F1");
+			$("#NEXT-2").css("background","#F1F1F1");
+			$("#NEXT-3").css("background","#F1F1F1");
+			$("#NEXT-4").css("background","#00AAEE");
+			$(".XXImg01").css("transform","translateX(-47%)");
+			$(".XXImg01").css("opacity","0");
+			$(".XXImg02").css("transform","translateX(47%)");
+			$(".XXImg02").css("opacity","0");
+			$(".XXImg2").css("transform","translateX(40%)");
+			$(".XXImg2").css("opacity","0");
+			$(".XXImg3").css("transform","translateX(-40%)");
+			$(".XXImg3").css("opacity","0");
+			$(".XXImg4").css("transform","translateX(-40%)");
+			$(".XXImg4").css("opacity","1");
+		}
+		if( !islocation ){
+			clearInterval(timer2);
+		}
+		islocation = false;
+	}
+	
+	/*
+	*侧边滚动按钮
+	*/
+	var obtn1 = document.getElementById('NEXT-1');
+	var obtn2 = document.getElementById('NEXT-2');
+	var obtn3 = document.getElementById('NEXT-3');
+	var obtn4 = document.getElementById('NEXT-4');
+	
+	var timer2 = null;
+	obtn1.onclick = function(){
+		clearInterval(timer2);
+		var isTop = true;
+		timer2 = setInterval(function(){
+			var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+			var ispeed = Math.floor(-osTop / 7);
+			document.documentElement.scrollTop = document.body.scrollTop = osTop + ispeed;
+			islocation = true;
+			if ( osTop == 0 ){
+				clearInterval(timer2);
+				$(".XXImg01").css("transform","translateX(47%)");
+				$(".XXImg01").css("opacity","1");
+				$(".XXImg02").css("transform","translateX(-47%)");
+				$(".XXImg02").css("opacity","1");
+				$(".XXImg2").css("transform","translateX(40%)");
+				$(".XXImg2").css("opacity","0");
+				$(".XXImg3").css("transform","translateX(-40%)");
+				$(".XXImg3").css("opacity","0");
+				$(".XXImg4").css("transform","translateX(40%)");
+				$(".XXImg4").css("opacity","0");
+			}
+		},50);
+	}
+	
+	obtn2.onclick = function(){//670
+		clearInterval(timer2);
+		timer2 = setInterval(function(){
+			var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+			if ( osTop < 670 ){
+				var distance = 670 - osTop;
+				var ispeed = Math.floor(distance / 7);
+				document.documentElement.scrollTop = document.body.scrollTop = osTop + ispeed;
+				islocation = true;
+			}
+			if ( osTop > 670 ){
+				var distance = osTop - 670;
+				var ispeed = Math.floor(distance / 7);
+				document.documentElement.scrollTop = document.body.scrollTop = osTop - ispeed;
+				islocation = true;
+			}
+			if ( osTop == 670 ){
+				clearInterval(timer2);
+				$(".XXImg01").css("transform","translateX(-47%)");
+				$(".XXImg01").css("opacity","0");
+				$(".XXImg02").css("transform","translateX(47%)");
+				$(".XXImg02").css("opacity","0");
+				$(".XXImg2").css("transform","translateX(-40%)");
+				$(".XXImg2").css("opacity","1");
+				$(".XXImg3").css("transform","translateX(-40%)");
+				$(".XXImg3").css("opacity","0");
+				$(".XXImg4").css("transform","translateX(40%)");
+				$(".XXImg4").css("opacity","0");
+			}
+		},50);
+	}
+	
+	obtn3.onclick = function(){//1345
+		clearInterval(timer2);
+		timer2 = setInterval(function(){
+			var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+			if ( osTop < 1345 ){
+				var distance = 1345 - osTop;
+				var ispeed = Math.floor(distance / 7);
+				document.documentElement.scrollTop = document.body.scrollTop = osTop + ispeed;
+				islocation = true;
+			}
+			if ( osTop > 1345 ){
+				var distance = osTop - 1345;
+				var ispeed = Math.floor(distance / 7);
+				document.documentElement.scrollTop = document.body.scrollTop = osTop - ispeed;
+				islocation = true;
+			}
+			if ( osTop == 1345 ){
+				clearInterval(timer2);
+				$(".XXImg01").css("transform","translateX(-47%)");
+				$(".XXImg01").css("opacity","0");
+				$(".XXImg02").css("transform","translateX(47%)");
+				$(".XXImg02").css("opacity","0");
+				$(".XXImg2").css("transform","translateX(40%)");
+				$(".XXImg2").css("opacity","0");
+				$(".XXImg3").css("transform","translateX(40%)");
+				$(".XXImg3").css("opacity","1");
+				$(".XXImg4").css("transform","translateX(40%)");
+				$(".XXImg4").css("opacity","0");
+			}
+		},50);
+	}
+	
+	obtn4.onclick = function(){//2010
+		clearInterval(timer2);
+		timer2 = setInterval(function(){
+			var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+			if ( osTop < 2010 ){
+				var distance = 2010 - osTop;
+				var ispeed = Math.floor(distance / 7);
+				document.documentElement.scrollTop = document.body.scrollTop = osTop + ispeed;
+				islocation = true;
+			}
+			if ( osTop > 2010 ){
+				var distance = osTop - 2010;
+				var ispeed = Math.floor(distance / 7);
+				document.documentElement.scrollTop = document.body.scrollTop = osTop - ispeed;
+				islocation = true;
+			}
+			if ( osTop == 2010 ){
+				clearInterval(timer2);
+				$(".XXImg01").css("transform","translateX(-47%)");
+				$(".XXImg01").css("opacity","0");
+				$(".XXImg02").css("transform","translateX(47%)");
+				$(".XXImg02").css("opacity","0");
+				$(".XXImg2").css("transform","translateX(40%)");
+				$(".XXImg2").css("opacity","0");
+				$(".XXImg3").css("transform","translateX(-40%)");
+				$(".XXImg3").css("opacity","0");
+				$(".XXImg4").css("transform","translateX(-40%)");
+				$(".XXImg4").css("opacity","1");
+			}
+		},50);
+	}
+	
+	/*
+	 * 清除定时器
+	 */
+	var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+	if ( osTop > 2010 ){
+		clearInterval(timer2);
+	}
+	
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
