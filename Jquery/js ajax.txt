@@ -79,6 +79,8 @@ request.onreadystatechange = function() {
 
 
 
+
+
 	logphone = logphonenumber;
 	    	var request = new XMLHttpRequest();
     		request.open("POST", "http://localhost/default/check/logphone_check.php");
@@ -115,24 +117,6 @@ request.onreadystatechange = function() {
 			logerror11.style.display = 'none';
 	    }
 
-
-12000-4500=7500 信用卡
-
-5000 + 900 + 500 12月工资 + 房租退款 + 还款
-6400 还贷款  7500 -6400 = 1100 
-6000 借款 1100+6000=7100 
-4000（房租）+700（花呗、电费）+660（车票）+ 500 （生活费） = 5900 
-
-5000 1月工资
-5000 还贷款 7100 - 5000 = 2100
-1300 借款 2100 + 1300 = 3400
-100 （电费）+ 1000 （生活费）+ 150 （花呗） =  1300
-
-30 * 33.3 = 1000
-
-3400 - 1000 = 2400
-
-12000 - 2400 = 9600
 
 
 
